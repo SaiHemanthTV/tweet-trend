@@ -30,7 +30,7 @@ environment {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
-                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-cred1"
+                     def server = Artifactory.newServer url:registry+"/artifactory" ,  credentialsId:"jfrog-cred"
                      def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}";
                      def uploadSpec = """{
                           "files": [
@@ -63,7 +63,7 @@ environment {
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
-                docker.withRegistry(registry, 'jfrog-cred1'){
+                docker.withRegistry(registry, 'jfrog-cred'){
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
